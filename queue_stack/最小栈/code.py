@@ -20,7 +20,7 @@ class MinStack:
             self.min = min(self.stack)
 
     def top(self) -> 'int':
-        return self.stack[- 1]
+        return self.stack[-1]
 
     def getMin(self) -> 'int':
         return self.min
