@@ -53,5 +53,52 @@ class Solution(object):
         :type head: Node
         :rtype: Node
         """
+        if head is None:
+            return None
         
+        cur_head = head
+        while cur_head:
+            val = cur_head.val
+            new_node = Node(val, None, None)
+            new_node.next = cur_head.next
+            cur_head.next = new_node
+            cur_head = new_node.next
+        
+        cur_head = head
+        while cur_head:
+            new_node = cur_head.next
+            if cur_head.random:
+                new_node.random = cur_head.random.next
+            cur_head = new_node.next
+        
+        cur_head = head
+        new_head = head.next
+        while cur_head is not None and cur_head.next:
+            next_node = cur_head.next
+            cur_head.next = next_node.next
+            cur_head = next_node
+        
+        return new_head
 
+
+# better
+        # if not head:
+        #     return 
+        
+        # res = Node(head.val, None, None)
+        # n1 = head.next
+        # n2 = res
+        # lists = {head:res}
+        # while n1:
+        #     n2.next = Node(n1.val, None, None)
+        #     lists[n1] = n2.next
+        #     n1 = n1.next
+        #     n2 = n2.next
+        # lists[None] = None
+        # n1 = head
+        # n2 = res
+        # while n1:
+        #     n2.random = lists[n1.random]
+        #     n2 = n2.next
+        #     n1 = n1.next
+        # return res
