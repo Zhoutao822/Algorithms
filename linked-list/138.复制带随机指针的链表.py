@@ -102,3 +102,22 @@ class Solution(object):
         #     n2 = n2.next
         #     n1 = n1.next
         # return res
+
+
+# simple
+
+"""
+# # Definition for a Node.
+# class Node(object):
+#     def __init__(self, val, next, random):
+#         self.val = val
+#         self.next = next
+#         self.random = random
+# """
+# class Solution(object):
+#     def copyRandomList(self, head):
+#         """
+#         :type head: Node
+#         :rtype: Node
+#         """
+#         return copy.deepcopy(head)
