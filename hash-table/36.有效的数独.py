@@ -77,29 +77,28 @@ class Solution(object):
         :rtype: bool
         """
         for i in range(9):
-            visited = set()
-            for n in board[i]:
-                if n != '.':
-                    if n in visited:
-                        return False
-                    else:
-                        visited.add(n)
-        
-            visited = set()
-            for n in board[:][i]:
-                if n != '.':
-                    if n in visited:
-                        return False
-                    else:
-                        visited.add(n)   
-
-            visited = set()
-            start = (i // 3 * 3, i % 3 * 3)
+            visited_row = set()
+            visited_col = set()
+            visited_block = set()
             for j in range(9):
-                n = board[start[0] + j // 3][start[1] + j % 3]
-                if n != '.':
-                    if n in visited:
+                n_row = board[i][j]
+                if n_row != '.':
+                    if n_row in visited_row:
                         return False
                     else:
-                        visited.add(n)  
+                        visited_row.add(n_row)
+                        
+                n_col = board[j][i]
+                if n_col != '.':
+                    if n_col in visited_col:
+                        return False
+                    else:
+                        visited_col.add(n_col)   
+
+                n_block = board[i // 3 * 3 + j // 3][i % 3 * 3 + j % 3]
+                if n_block != '.':
+                    if n_block in visited_block:
+                        return False
+                    else:
+                        visited_block.add(n_block)  
         return True                
