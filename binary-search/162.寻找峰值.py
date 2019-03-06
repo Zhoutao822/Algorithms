@@ -46,13 +46,19 @@ class Solution(object):
         """
         if len(nums) == 0:
             return -1
-        l, r = 0, len(nums) - 1
-        while l + 1 < r:
+        # l, r = 0, len(nums) - 1
+        # while l + 1 < r:
+        #     mid = (l + r) // 2
+        #     if mid > 0 and nums[mid - 1] < nums[mid]:
+        #         l = mid
+        #     else:
+        #         r = mid
+        # return l if nums[l] > nums[r] else r
+        l, r = 0, len(nums)
+        while l < r:
             mid = (l + r) // 2
-            if mid > 0 and nums[mid - 1] < nums[mid]:
-                l = mid
+            if mid + 1 < len(nums) and nums[mid] < nums[mid + 1]:
+                l = mid + 1
             else:
                 r = mid
-        return l if nums[l] > nums[r] else r
-        
-
+        return l

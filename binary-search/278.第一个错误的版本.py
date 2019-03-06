@@ -41,22 +41,18 @@ class Solution(object):
         :type n: int
         :rtype: int
         """
-        if isBadVersion(1):
-            return 1
-        if isBadVersion(n) and not isBadVersion(n-1):
-            return n
-        l, r = 0, n
+        l, r = 1, n
         while l < r:
             mid = (l + r) // 2
-            if isBadVersion(mid) and not isBadVersion(mid-1):
-                return mid
+            if not isBadVersion(mid) and isBadVersion(mid+1):
+                return mid + 1
             elif not isBadVersion(mid):
                 l = mid + 1
             else:
                 r = mid
-        if l != n and isBadVersion(l) and not isBadVersion(l-1):
-            return l
-        return -1
+        if l != n+1 and isBadVersion(l) and not isBadVersion(l+1):
+            return l + 1
+        return 1
 # better
 
         # if isBadVersion(1): return 1
