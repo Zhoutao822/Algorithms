@@ -44,10 +44,21 @@ class Solution(object):
         :type k: int
         :rtype: int
         """
-        ret = []
-        for i in range(len(nums)):
-            for j in range(i, len(nums)):
-                ret.append(abs(nums[i] - nums[j]))
-        ret.sort()
-        return ret[k-1]
+        nums.sort()
+        l, r = 0, nums[-1] - nums[0]
+        while l < r:
+            mid = (l + r) // 2
+            j = count = 0
+            for i in range(1, len(nums)):
+                while nums[i] - nums[j] > mid:
+                    j += 1
+                count += i - j
+            if count < k:
+                l = mid + 1
+            else:
+                r = mid
+        return l
 
+n = [38,33,57,65,13,2,86,75,4,56]
+k = 26
+print(Solution().smallestDistancePair(n, k))
