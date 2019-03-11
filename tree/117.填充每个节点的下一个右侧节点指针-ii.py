@@ -44,7 +44,7 @@
 # 
 # 
 # 你只能使用常量级额外空间。
-# 使用递归解题也符合要求，本题中递归程序占用的栈空间不算做额外的空间复杂度。
+# 使用递归解题也符合要求，本题中递归程  序占用的栈空间不算做额外的空间复杂度。
 # 
 # 
 #
@@ -63,5 +63,47 @@ class Solution(object):
         :type root: Node
         :rtype: Node
         """
+        # def getNext(node):
+        #     while node:
+        #         if node.left: return node.left
+        #         if node.right: return node.right
+        #         node = node.next
+        #     return None
+        # if not root: return root
+        # if not root.left and not root.right: return root
+        # next_node = getNext(root.next)
+        # if root.left and root.right:
+        #     root.left.next = root.right
+        #     root.right.next = next_node
+        # if not root.left: root.right.next = next_node
+        # if not root.right: root.left.next = next_node
         
+        # self.connect(root.right)
+        # self.connect(root.left)
+        # return root
+        cur = root
+        prev = None
+        head = None
+        while cur:
+            while cur:
+                if cur.left:
+                    if prev:
+                        prev.next = cur.left
+                    else:
+                        head = cur.left
+                    prev = cur.left
+                if cur.right:
+                    if prev:
+                        prev.next = cur.right
+                    else:
+                        head = cur.right
+                    prev = cur.right
+                cur = cur.next
+            cur = head
+            prev = None
+            head = None
+        return root
+        
+        
+
 

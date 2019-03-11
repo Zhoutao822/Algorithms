@@ -6,7 +6,7 @@
 # https://leetcode-cn.com/problems/find-first-and-last-position-of-element-in-sorted-array/description/
 #
 # algorithms
-# Medium (34.93%)
+# Medium (34.95%)
 # Total Accepted:    11.9K
 # Total Submissions: 34K
 # Testcase Example:  '[5,7,7,8,8,10]\n8'
@@ -55,9 +55,6 @@ class Solution(object):
                 l = mid
         if nums[r] == target: end = r
         
-        return [start, end]
+        return [start, end]x
+        
 
-n = [5,7,7,8,8,10]
-t = 8
-
-print(Solution().searchRange(n, t))
