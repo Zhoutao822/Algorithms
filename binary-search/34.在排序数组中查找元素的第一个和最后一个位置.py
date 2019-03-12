@@ -55,6 +55,6 @@ class Solution(object):
                 l = mid
         if nums[r] == target: end = r
         
-        return [start, end]x
+        return [start, end]
         
 
