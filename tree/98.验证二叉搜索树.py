@@ -58,4 +58,35 @@ class Solution(object):
         :type root: TreeNode
         :rtype: bool
         """
-        
+        if not root: return True
+        ret = []
+
+        def func(node, arr):
+            if not node:
+                return
+            func(node.left, arr)
+            arr.append(node.val)
+            func(node.right, arr)
+
+        func(root, ret)
+        for i in range(len(ret) - 1):
+            if ret[i] >= ret[i + 1]:
+                return False
+        return True
+
+        # better
+    # def isValidBST(self, root):
+    #     """
+    #     :type root: TreeNode
+    #     :rtype: bool
+    #     """
+    #     return self.helper(root, -1 << 63, (1 << 63) - 1)
+
+    # def helper(self, root, minVal, maxVal):
+    #     if root:
+    #         if not minVal < root.val < maxVal:
+    #             return False
+
+    #         return self.helper(root.left, minVal, root.val) and self.helper(
+    #             root.right, root.val, maxVal)
+    #     return True
