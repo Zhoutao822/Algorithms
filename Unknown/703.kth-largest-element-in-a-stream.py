@@ -33,6 +33,8 @@
 # 你可以假设 nums 的长度≥ k-1 且k ≥ 1。
 # 
 #
+import heapq
+
 class KthLargest(object):
 
     def __init__(self, k, nums):
@@ -40,14 +42,29 @@ class KthLargest(object):
         :type k: int
         :type nums: List[int]
         """
-        
+        self.heap = []
+        self.length = k
+        for num in nums:
+            self.add(num)
+        # better
+        # self.pool = nums
+        # self.k = k
+        # heapq.heapify(self.pool)
+        # while len(self.pool) > k:
+        #     heapq.heappop(self.pool)
 
     def add(self, val):
         """
         :type val: int
         :rtype: int
         """
-        
+        if len(self.heap) < self.length:
+            heapq.heappush(self.heap, val)
+        else:
+            top = self.heap[0]
+            if val > top:
+                heapq.heappushpop(self.heap, val)     
+        return self.heap[0]   
 
 
 # Your KthLargest object will be instantiated and called as such:
