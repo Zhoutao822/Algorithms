@@ -39,11 +39,31 @@
 # 
 # 
 #
+import heapq
 class Solution(object):
     def getSkyline(self, buildings):
         """
         :type buildings: List[List[int]]
         :rtype: List[List[int]]
         """
+        events = [(l, -h, r) for l, r, h in buildings]
+        events.extend([(r, 0, 0) for l, r, h in buildings])
+        events.sort()
+        # print(events)
         
+        res = [[0, 0]]
+        live = [(0, float('inf'))]
+        
+        for l,neg_h,r in events:
+            
+            while live[0][1] <= l:
+                heapq.heappop(live)
+            if neg_h:
+                heapq.heappush(live, (neg_h, r))
+            if res[-1][1] != -live[0][0]:
+                res.append([l, -live[0][0]])
+                
+        return res[1:]
 
+b = [[2,9,10],[3,7,15],[5,12,12],[15,20,10],[19,24,8]]
+print(Solution().getSkyline(b))
