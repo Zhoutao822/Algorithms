@@ -47,10 +47,22 @@
 #         self.right = None
 
 class Solution(object):
+    def __init__(self):
+        self.ret = -float('inf')
+
     def maxPathSum(self, root):
         """
         :type root: TreeNode
         :rtype: int
         """
+        self.getMax(root)
+        return self.ret
+
+    def getMax(self, node):
+        if not node: return 0
+        left = max(0, self.getMax(node.left))
+        right = max(0, self.getMax(node.right))
+        self.ret = max(self.ret, left + right + node.val)
+        return max(left, right) + node.val
         
 
